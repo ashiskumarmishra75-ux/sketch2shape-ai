@@ -1,0 +1,25 @@
+# secrets
+.env
+
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# large / generated artefacts (never commit weights, uploads or job outputs)
+third_party/
+models/*
+!models/README.md
+data/uploads/*
+data/processed/*
+data/generated/*
+!data/**/.gitkeep
+outputs/*
+!outputs/.gitkeep
+!outputs/submission/
+*.ckpt
+*.safetensors
+*.onnx
+.gradio/

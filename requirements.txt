@@ -1,0 +1,48 @@
+# Sketch2Shape AI - Python dependencies (Python 3.10 - 3.12)
+#
+# 1) Install PyTorch FIRST, matching your CUDA version (https://pytorch.org/get-started/locally/):
+#      pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+#    (Google Colab already ships a CUDA build of torch - skip this step there.)
+# 2) pip install -r requirements.txt
+# 3) bash scripts/setup.sh   (clones TripoSR at a pinned commit, tries to build torchmcubes)
+#
+# Upper bounds keep us on APIs verified for this project: TripoSR uses transformers' ViTModel
+# (4.x API), gradio 5 ImageEditor/Model3D signatures are used by the UI.
+
+# --- core / computer vision
+numpy>=1.24
+opencv-python-headless>=4.8        # tested with 4.x and 5.0
+Pillow>=10.0
+scikit-image>=0.21          # marching-cubes fallback when torchmcubes cannot be compiled
+requests>=2.31
+
+# --- generative AI
+diffusers>=0.32,<0.43
+transformers>=4.46,<4.58
+accelerate>=0.33            # model CPU offload on low-VRAM GPUs
+safetensors>=0.4
+huggingface_hub>=0.30,<1.0
+
+# --- segmentation
+rembg>=2.0.60
+onnxruntime>=1.17           # swap for onnxruntime-gpu if you want rembg on the GPU
+
+# --- TripoSR runtime deps (the package itself is cloned by scripts/setup.sh)
+omegaconf>=2.3
+einops>=0.7
+imageio>=2.31
+PyMCubes>=0.1.4             # fast marching cubes fallback (torchmcubes is preferred when it builds)
+
+# --- optional UV texture baking for TripoSR (S2S_BAKE_TEXTURE=1, needs an OpenGL context)
+xatlas>=0.0.9
+moderngl>=5.10
+
+# --- mesh processing / export
+trimesh>=4.4,<5
+scipy>=1.10                 # used by some trimesh repair routines
+
+# --- app
+gradio>=5.30,<6
+
+# --- tests
+pytest>=7.4
