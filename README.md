@@ -1,5 +1,5 @@
 # ✏️ → 🧊 Sketch2Shape AI
-
+**Team OG:** Ashis Kumar Mishra, Saarthak Tiwari, Naman Chandra
 **From a rough 2D sketch to a textured, exportable 3D asset** — TechZephyr 4.0 (IIT Bhubaneswar), 24-hour hackathon.
 
 Draw on the canvas (or upload a photo/scan of a sketch), optionally describe the object, and Sketch2Shape returns a
@@ -326,6 +326,32 @@ Full 6-sketch benchmark: run `python scripts/benchmark.py --warmup` (notebook ce
 `outputs/benchmark/results.md` here.
 
 <!-- BENCHMARK_RESULTS_START -->
+Hardware: Tesla T4 | VRAM 14.6 GB | torch 2.11.0+cu130 | CUDA 13.0 | RAM 12.7 GB
+Config: Lykon/dreamshaper-8 + lllyasviel/control_v11p_sd15_scribble | 2 candidates x 25 steps @ 512px | triposr mc=256
+
+| sample | input type | object (VLM) | CV | understand | diffusion | rank | prep | 3D | mesh | total s | fidelity | faces | GLB ok |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 01_cup.png | clean_sketch | mug | 0.1 | 9.4 | 11.1 | 7.3 | 0.0 | 4.1 | 2.5 | **34.5** | 0.89 | 137,740 | True |
+| 02_chair.png | clean_sketch | chair | 0.1 | 8.6 | 10.9 | 7.1 | 0.0 | 4.0 | 1.4 | **32.1** | 0.86 | 73,796 | True |
+| 03_table_lamp.png | clean_sketch | table | 0.1 | 8.0 | 10.8 | 7.2 | 0.0 | 4.0 | 1.2 | **31.4** | 0.93 | 67,324 | True |
+| 04_car_rough.png | clean_sketch | car | 0.1 | 8.1 | 10.9 | 6.9 | 0.0 | 4.1 | 1.5 | **31.7** | 0.67 | 81,200 | True |
+| 05_noisy_photo_vase.png | paper_photo | vase | 0.1 | 8.1 | 10.8 | 6.8 | 0.0 | 4.0 | 1.9 | **31.8** | 0.92 | 111,484 | True |
+| 06_house_chalkboard.png | dark_background | house | 0.1 | 8.8 | 10.9 | 6.9 | 0.0 | 4.0 | 4.3 | **35.1** | 0.83 | 214,840 | True |
+| 07_lamp_sketch.png | clean_sketch | lamp | 0.1 | 7.9 | 10.9 | 7.0 | 0.0 | 4.0 | 1.2 | **31.2** | 0.95 | 70,012 | True |
+| 08_mug_sketch.png | clean_sketch | mug | 0.0 | 8.3 | 10.9 | 6.8 | 0.0 | 4.0 | 3.2 | **33.2** | 0.88 | 169,072 | True |
+
+**Example inputs and outputs** (files in `outputs/submission/<sample>/`):
+
+| Sample | Input | ControlNet map | Generated image | 3D model | GLB re-open check |
+|---|---|---|---|---|---|
+| 01_cup | ![](outputs/submission/01_cup/input.png) | ![](outputs/submission/01_cup/control_map.png) | ![](outputs/submission/01_cup/generated.png) | [model.glb](outputs/submission/01_cup/model.glb) | ✅ 137,740 faces, vertex |
+| 02_chair | ![](outputs/submission/02_chair/input.png) | ![](outputs/submission/02_chair/control_map.png) | ![](outputs/submission/02_chair/generated.png) | [model.glb](outputs/submission/02_chair/model.glb) | ✅ 73,796 faces, vertex |
+| 03_table_lamp | ![](outputs/submission/03_table_lamp/input.png) | ![](outputs/submission/03_table_lamp/control_map.png) | ![](outputs/submission/03_table_lamp/generated.png) | [model.glb](outputs/submission/03_table_lamp/model.glb) | ✅ 67,324 faces, vertex |
+| 04_car_rough | ![](outputs/submission/04_car_rough/input.png) | ![](outputs/submission/04_car_rough/control_map.png) | ![](outputs/submission/04_car_rough/generated.png) | [model.glb](outputs/submission/04_car_rough/model.glb) | ✅ 81,200 faces, vertex |
+| 05_noisy_photo_vase | ![](outputs/submission/05_noisy_photo_vase/input.png) | ![](outputs/submission/05_noisy_photo_vase/control_map.png) | ![](outputs/submission/05_noisy_photo_vase/generated.png) | [model.glb](outputs/submission/05_noisy_photo_vase/model.glb) | ✅ 111,484 faces, vertex |
+| 06_house_chalkboard | ![](outputs/submission/06_house_chalkboard/input.png) | ![](outputs/submission/06_house_chalkboard/control_map.png) | ![](outputs/submission/06_house_chalkboard/generated.png) | [model.glb](outputs/submission/06_house_chalkboard/model.glb) | ✅ 214,840 faces, vertex |
+| 07_lamp_sketch | ![](outputs/submission/07_lamp_sketch/input.png) | ![](outputs/submission/07_lamp_sketch/control_map.png) | ![](outputs/submission/07_lamp_sketch/generated.png) | [model.glb](outputs/submission/07_lamp_sketch/model.glb) | ✅ 70,012 faces, vertex |
+| 08_mug_sketch | ![](outputs/submission/08_mug_sketch/input.png) | ![](outputs/submission/08_mug_sketch/control_map.png) | ![](outputs/submission/08_mug_sketch/generated.png) | [model.glb](outputs/submission/08_mug_sketch/model.glb) | ✅ 169,072 faces, vertex |
 <!-- BENCHMARK_RESULTS_END -->
 
 ## 15. Known limitations
