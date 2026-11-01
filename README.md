@@ -1,5 +1,6 @@
 # ✏️ → 🧊 Sketch2Shape AI
-**Team OG:** Ashis Kumar Mishra, Saarthak Tiwari, Naman Chandra
+**Team OG's:** Ashis Kumar Mishra, Saarthak Tiwari, Naman Chandra
+
 **From a rough 2D sketch to a textured, exportable 3D asset** — TechZephyr 4.0 (IIT Bhubaneswar), 24-hour hackathon.
 
 Draw on the canvas (or upload a photo/scan of a sketch), optionally describe the object, and Sketch2Shape returns a
